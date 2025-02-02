@@ -43,19 +43,19 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        UserDetails user1 = User.withUsername("samuella")
+        UserDetails user1 = User.withUsername("regis")
                 .password("{noop}1234")
                 .roles("USER")
                 .build();
 
-        UserDetails admin = User.withUsername("Admin")
+        UserDetails admin = User.withUsername("Admin2")
                 .password("{noop}admin2")
                 .roles("ADMIN")
                 .build();
 
         JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-        userDetailsManager.createUser(user1);
-        userDetailsManager.createUser(admin);
+//        userDetailsManager.createUser(user1);
+//        userDetailsManager.createUser(admin);
 
         return userDetailsManager;
 

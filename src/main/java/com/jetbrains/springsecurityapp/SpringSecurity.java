@@ -1,14 +1,17 @@
 package com.jetbrains.springsecurityapp;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-public class HelloWorld {
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/users")
+public class SpringSecurity {
+
+    public final UserService userService;
 
     @GetMapping("/")
     public String homepage(){
@@ -30,5 +33,11 @@ public class HelloWorld {
     @GetMapping("/admin")
     public String adminEndpoint(){
         return "Hello Admin!";
+    }
+
+
+    @PostMapping
+    public ResponseEntity<String> createUser(@RequestBody AppUser user) throws Exception {
+        return userService.createUser(user);
     }
 }
